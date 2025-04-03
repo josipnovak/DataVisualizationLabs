@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+    </head>
+    <body>
+        <h1>SVG</h1>
+        <script>
+        var svg = d3.select("body")
+            .append("svg")
+            .attr("width","1000")
+            .attr("height","1000");
+        svg.append("circle")
+            .attr("cx","100")
+            .attr("cy","100")
+            .attr("r", "40")
+            .attr("stroke", "blue")
+            .attr("stroke-width", 5)
+            .attr("fill", "transparent")
+        svg.append("circle")
+            .attr("cx","175")
+            .attr("cy","100")
+            .attr("r", "40")
+            .attr("stroke", "black")
+            .attr("stroke-width", 5)
+            .attr("fill", "transparent")
+        svg.append("circle")
+            .attr("cx","250")
+            .attr("cy","100")
+            .attr("r", "40")
+            .attr("stroke", "red")
+            .attr("stroke-width", 5)
+            .attr("fill", "transparent")
+        svg.append("circle")
+            .attr("cx","130")
+            .attr("cy","125")
+            .attr("r", "40")
+            .attr("stroke", "yellow")
+            .attr("stroke-width", 5)
+            .attr("fill", "transparent")
+        svg.append("circle")
+            .attr("cx","200")
+            .attr("cy","125")
+            .attr("r", "40")
+            .attr("stroke", "green")
+            .attr("stroke-width", 5)
+            .attr("fill", "transparent")
+        </script>
+    </body>
+</html>

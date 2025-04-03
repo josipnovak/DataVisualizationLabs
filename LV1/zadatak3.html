@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+    </head>
+    <body>
+    <script>
+        var body = d3.select("body");
+        body.append("h1").text("Vizualizacija podataka LV1");
+
+        var data = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+
+        var divs = body.selectAll("div")
+            .data(data)
+            .enter()
+            .append("div")  
+
+        divs.attr("id", function(d) {return "id" + d});
+        divs.append("h2").text(function(d) {return "Podnaslov " + d});
+        divs.append("p").text(function(d) {return "Tekst " + d});
+    </script>
+    </body>
+</html>

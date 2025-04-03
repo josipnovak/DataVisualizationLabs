@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+    </head>
+    <body>
+        <script>
+        var svg = d3.select("body")
+            .append("svg")
+            .attr("width","1000")
+            .attr("height","500");
+        
+            
+        svg.append("rect")
+            .attr("x", "0")
+            .attr("y", "0")
+            .attr("width", "1000")
+            .attr("height", "300")
+            .attr("fill", "blue")
+        svg.append("rect")
+            .attr("x", "0")
+            .attr("y", "300")
+            .attr("width", "1000")
+            .attr("height", "200")
+            .attr("fill", "green")
+
+        svg.append("circle")
+            .attr("cx","900")
+            .attr("cy","70")
+            .attr("r", "40")
+            .attr("fill", "yellow")
+        </script>
+    </body>
+</html>

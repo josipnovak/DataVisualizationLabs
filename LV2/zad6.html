@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://d3js.org/d3.v3.min.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        const data = [
+            { date: "2025-03-25", value: 34 },
+            { date: "2025-03-26", value: 42 },
+            { date: "2025-03-27", value: 36 },
+            { date: "2025-03-28", value: 48 },
+            { date: "2025-03-29", value: 58 },
+            { date: "2025-03-30", value: 50 },
+            { date: "2025-03-31", value: 60 }
+        ];
+
+        var dates = data.map(d => d.date);
+        var values = data.map(d => d.value);
+
+        var margin = {top: 20, bottom: 70, left:80, right: 20};
+        var width = 1000 - margin.left - margin.right;
+        var height = 500 - margin.top - margin.bottom;
+        var barPadding = 4;
+        var barWidth = width / data.length - barPadding;
+
+        var x = d3.scale.ordinal()
+            .domain(dates)
+            .rangeRoundBands([0, width]);   
+        
+        var y = d3.scale.linear()
+            .domain([0, d3.max(values)])
+            .range([height, 0]);
+
+        var xAxis = d3.svg.axis()
+            .scale(x)
+            .orient("bottom")
+            .tickFormat(function(d, i) { return dates[i]; });
+
+        var yAxis = d3.svg.axis()
+            .scale(y)
+            .orient("left")
+            .ticks(10);
+
+        var svg = d3.select("body")
+            .append("svg")
+            .attr("width", width + margin.left + margin.right)
+            .attr("height", height + margin.bottom + margin.top)
+            .style("background-color", "lightblue")
+            .append("g")
+            .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+        svg.append("g")
+            .attr("class", "x axis")
+            .attr("transform", "translate(0," + height + ")")
+            .call(xAxis)
+            .selectAll("text")
+            .style("text-anchor", "middle");
+
+        svg.append("text")
+            .attr("x", (width / 2))
+            .attr("y", (height + (margin.bottom / 2)))
+            .attr("dy", "1em")
+            .style("text-anchor", "middle")
+            .text("Datum");
+
+        svg.append("g")
+            .attr("class", "y axis")
+            .call(yAxis)
+            .append("text")
+            .attr("transform", "rotate(-90)")
+            .attr("x",0 - (height / 2))
+            .attr("y", 0 - margin.left)
+            .attr("dy", "1em")
+            .style("text-anchor", "middle")
+            .text("Broj stanovnika");
+
+        var valueline = d3.svg.line()
+            .x(function(d, i) { console.log(x(dates[i])); return x(dates[i]); })
+            .y(function(d, i) { console.log(values[i]); return y(values[i]); });
+        
+
+        var linechart = svg.append("path")
+            .attr("class", "line")
+            .attr("d", valueline(data))
+            .style("stroke", "blue")
+            .style("fill", "none");
+    </script>
+</body>
+</html>
