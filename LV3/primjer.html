@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://d3js.org/d3.v3.min.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var colors = d3.scale.category10();
+        var svg = d3.select("body")
+            .append("svg")
+            .attr("width",1024)
+            .attr("height",768)
+            .style("background","black");
+        var rects = svg.append("rect")
+            .attr("x", 100)
+            .attr("y", 100)
+            .attr("width", 100)
+            .attr("height", 200)
+            .style("fill", colors(2));
+        d3.select("rect")
+            .transition()
+            .delay(250)
+            .duration(1000)
+            .attr("transform", function(d){ return "translate(400,100)"; });
+    </script>
+</body>
+</html>

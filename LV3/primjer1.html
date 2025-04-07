@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://d3js.org/d3.v3.min.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var data = d3.range(10).map(function() {
+            return {
+                x: Math.random()*500,
+                y: Math.random()*500
+            };
+        });
+        var circles = svg.selectAll("circle")
+            .data(data)
+            .enter()
+            .append("circle")
+            .attr("cx", function(d) { return d.x; })
+            .attr("cy", function(d) { return d.y; })
+            .attr("r", 15)
+            .attr("height", 100)
+            .style("fill", "none")
+            .style("stroke", "blue");
+        function update() {
+        
+        var randomNumber = Math.ceil(Math.random() * 10);
+        var data = d3.range(randomNumber).map(function() { return {x:Math.random()*500, y: Math.random()*500}; });
+        var circles = svg.selectAll("circle")
+            .data(data)
+            .style("fill", "blue");
+        circles.enter()
+            .append("circle")
+            .attr("cx", function(d) { return d.x; })
+            .attr("cy", function(d) { return d.y; })
+            .attr("r", 15)
+            .attr("height", 100)
+            .style("fill", "none")
+            .style("stroke", "blue");
+        circles.exit().remove(); 
+    }
+        update();
+    </script>
+</body>
+</html>

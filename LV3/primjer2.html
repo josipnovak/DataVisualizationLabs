@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://d3js.org/d3.v3.min.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <script>
+
+        myText = d3.select("body").append("p");
+        var data = d3.range(10).map(function(){
+            return {
+                x: Math.random() * 500,
+                y: Math.random() * 500
+            };
+        })
+        var svg = d3.select("body").append("svg")
+            .attr("width", 500)
+            .attr("height", 500);
+
+        var circles = svg.selectAll("circle")
+            .data(data)
+            .enter()
+            .append("circle")
+            .attr("cx", function(d) { return d.x; })
+            .attr("cy", function(d) { return d.y; })
+            .attr("r", 5)
+            .attr("height", 100)
+            .attr("fill", "none")
+            .attr("stroke", "red")
+
+        function update(){
+            var randomNumber = Math.floor(Math.random() * 10);
+            var data = d3.range(randomNumber).map(function(){
+                return {
+                    x: Math.random() * 500,
+                    y: Math.random() * 500
+                };
+            })
+
+            myText.html("Random number: " + randomNumber);
+            var circles = svg.selectAll("circle")
+                .data(data)
+            circles.transition()
+                .duration(1000)
+                .attr("cx", function(d) { return d.x; })
+                .attr("cy", function(d) { return d.y; })    
+            circles.enter()
+                .append("circle")
+                .attr("cx", function(d) { return d.x; })
+                .attr("cy", function(d) { return d.y; })
+                .attr("r", 5)
+                .attr("height", 100)
+                .attr("fill", "red")
+                .attr("stroke", "none")
+
+            circles.exit()
+                .transition()
+                .duration(1000)
+                .attr("r", 0)
+                .each("end", function() { d3.select(this).remove(); });
+        }
+
+        setInterval(update, 1000);
+    </script>
+</body>
+</html>
